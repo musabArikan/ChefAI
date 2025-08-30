@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+body {
+  min-height: 100vh;
+  background-color: #fcfcfc;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #a9a9a9;
+}
+.active {
+  background-color: #fff0ed;
+  border-color: tomato;
+}
