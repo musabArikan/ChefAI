@@ -34,7 +34,7 @@ const Footer = () => {
               href="https://github.com/musabArikan"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-gray-400 text-3xl"
+              className="text-white text-3xl"
             >
               <FaGithub />
             </a>
