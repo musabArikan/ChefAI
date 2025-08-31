@@ -15,7 +15,17 @@ const PORT = process.env.PORT || 4000;
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // frontend local
+      "http://localhost:5174", // admin local (gerekirse portu değiştirin)
+      "https://chefai-7d20.onrender.com", // frontend prod
+      "https://chefai-dashboard.onrender.com", // admin prod
+    ],
+    credentials: true,
+  })
+);
 
 // Serve static files (for uploaded images)
 app.use("/images", express.static("uploads"));

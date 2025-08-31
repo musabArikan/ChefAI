@@ -3,7 +3,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const List = ({ url }) => {
+import { url } from "../assets/assets";
+const List = () => {
   const [list, setList] = useState([]);
 
   const fetchList = async () => {

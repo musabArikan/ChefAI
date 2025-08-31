@@ -3,7 +3,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
 
-const Orders = ({ url }) => {
+import { url } from "../assets/assets";
+const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   const handleStatusChange = async (orderId, newStatus) => {
