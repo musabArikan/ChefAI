@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { assets } from "../assets/assets";
 import { StoreContext } from "../context/StoreContext";
+import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
+import { assets } from "../assets/assets";
 
 const FoodItem = ({ id, name, price, description, image }) => {
   const { cartItems, addToCart, removeFromCart, url } =
     useContext(StoreContext);
   return (
-    <div className="w-full m-auto rounded-[15px] border border-[tomato]/30 transition-all  hover:shadow-sm  cursor-pointer">
+    <div className="w-full m-auto rounded-[15px] border border-[tomato]/50 transition-all  hover:shadow-sm  cursor-pointer">
       <div className="relative">
         <img
           src={url + "/images/" + image}
@@ -14,27 +15,34 @@ const FoodItem = ({ id, name, price, description, image }) => {
           className="w-full rounded-t-[15px]"
         />
         {!cartItems[id] ? (
-          <img
-            src={assets.add_icon_white}
-            alt=""
+          <button
+            type="button"
             onClick={() => addToCart(id)}
-            className="w-9 absolute bottom-[15px] right-[15px] cursor-pointer rounded-[50%]"
-          />
+            className="flex items-center gap-2 px-4 py-2 absolute bottom-[15px] right-[15px] cursor-pointer rounded-full bg-white  text-[tomato] font-semibold text-xs"
+            aria-label="Add to cart"
+          >
+            <span>Add to Cart</span>
+            <FaPlusCircle size={18} color="tomato" />
+          </button>
         ) : (
           <div className="absolute bottom-[15px] right-[15px] flex items-center gap-2.5 p-1.5 rounded-[50px] bg-white ">
-            <img
-              src={assets.remove_icon_red}
-              alt=""
+            <button
+              type="button"
               onClick={() => removeFromCart(id)}
-              className="w-7"
-            />
+              className="bg-transparent border-none p-0 flex items-center"
+              aria-label="Remove from cart"
+            >
+              <FaMinusCircle size={20} color="#ef4444" />
+            </button>
             <p className="font-medium">{cartItems[id]}</p>
-            <img
-              src={assets.add_icon_green}
-              alt=""
+            <button
+              type="button"
               onClick={() => addToCart(id)}
-              className="w-7"
-            />
+              className="bg-transparent border-none p-0 flex items-center"
+              aria-label="Add more"
+            >
+              <FaPlusCircle size={20} color="#22c55e" />
+            </button>
           </div>
         )}
       </div>

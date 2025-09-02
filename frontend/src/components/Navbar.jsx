@@ -7,7 +7,10 @@ import { StoreContext } from "../context/StoreContext";
 
 const Navbar = ({ setShowLogin }) => {
   const [activeSection, setActiveSection] = useState("home");
-  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const { getTotalCartAmount, cartItems, token, setToken } = useContext(StoreContext);
+
+  // Sepetteki toplam ürün adedi
+  const totalCartCount = Object.values(cartItems).reduce((sum, val) => sum + val, 0);
   const navigate = useNavigate();
 
   return (
@@ -93,7 +96,11 @@ const Navbar = ({ setShowLogin }) => {
             <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>
               <img src={assets.basket_icon} alt="" className="w-7 h-7 " />
             </Link>
-            <div className="absolute min-w-2.5 min-h-2.5 bg-[tomato] rounded-md top-[-8px] right-[-8px]"></div>
+            {totalCartCount > 0 && (
+              <div className="absolute min-w-5 min-h-5 bg-[tomato] text-white text-xs font-bold flex items-center justify-center rounded-full top-[-10px] right-[-10px] px-1 shadow">
+                {totalCartCount}
+              </div>
+            )}
           </div>
         )}
         {!token ? (
