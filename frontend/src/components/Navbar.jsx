@@ -1,4 +1,5 @@
 import { assets } from "../assets/assets";
+import { PiBasket } from "react-icons/pi";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
@@ -97,7 +98,7 @@ const Navbar = ({ setShowLogin }) => {
         {token && (
           <div className="relative">
             <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>
-              <img src={assets.basket_icon} alt="" className="w-7 h-7 " />
+              <PiBasket className="w-8 h-8 text-[tomato]" />
             </Link>
             {totalCartCount > 0 && (
               <div className="absolute min-w-5 min-h-5 bg-[tomato] text-white text-xs font-bold flex items-center justify-center rounded-full top-[-10px] right-[-10px] px-1 shadow">
