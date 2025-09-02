@@ -90,7 +90,7 @@ const Navbar = ({ setShowLogin }) => {
       <div className="flex items-center gap-10 navbar-right max-[1050px]:gap-[30px] max-[900px]:gap-5">
         {token && (
           <div className="relative">
-            <Link to="/cart" onClick={window.scrollTo(0, 0)}>
+            <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>
               <img src={assets.basket_icon} alt="" className="w-7 h-7 " />
             </Link>
             <div className="absolute min-w-2.5 min-h-2.5 bg-[tomato] rounded-md top-[-8px] right-[-8px]"></div>
