@@ -7,10 +7,13 @@ import { StoreContext } from "../context/StoreContext";
 
 const Navbar = ({ setShowLogin }) => {
   const [activeSection, setActiveSection] = useState("home");
-  const { getTotalCartAmount, cartItems, token, setToken } = useContext(StoreContext);
+  const { getTotalCartAmount, cartItems, token, setToken } =
+    useContext(StoreContext);
 
-  // Sepetteki toplam ürün adedi
-  const totalCartCount = Object.values(cartItems).reduce((sum, val) => sum + val, 0);
+  const totalCartCount = Object.values(cartItems).reduce(
+    (sum, val) => sum + val,
+    0
+  );
   const navigate = useNavigate();
 
   return (
