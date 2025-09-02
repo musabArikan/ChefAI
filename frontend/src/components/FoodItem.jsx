@@ -2,10 +2,20 @@ import React, { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { assets } from "../assets/assets";
+import { toast } from "react-toastify";
 
 const FoodItem = ({ id, name, price, description, image }) => {
   const { cartItems, addToCart, removeFromCart, url } =
     useContext(StoreContext);
+
+  const handleAdd = () => {
+    addToCart(id);
+    toast.success(`${name} added to cart`, { position: "bottom-right" });
+  };
+  const handleRemove = () => {
+    removeFromCart(id);
+    toast.info(`${name} removed from cart`, { position: "bottom-right" });
+  };
   return (
     <div className="w-full m-auto rounded-[15px] border border-[tomato]/50 transition-all  hover:shadow-sm  cursor-pointer">
       <div className="relative">
@@ -17,7 +27,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
         {!cartItems[id] ? (
           <button
             type="button"
-            onClick={() => addToCart(id)}
+            onClick={handleAdd}
             className="flex items-center gap-2 px-4 py-2 absolute bottom-[15px] right-[15px] cursor-pointer rounded-full bg-white  text-[tomato] font-semibold text-xs"
             aria-label="Add to cart"
           >
@@ -28,7 +38,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
           <div className="absolute bottom-[15px] right-[15px] flex items-center gap-2.5 p-1.5 rounded-[50px] bg-white ">
             <button
               type="button"
-              onClick={() => removeFromCart(id)}
+              onClick={handleRemove}
               className="bg-transparent border-none p-0 flex items-center"
               aria-label="Remove from cart"
             >
@@ -37,7 +47,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
             <p className="font-medium">{cartItems[id]}</p>
             <button
               type="button"
-              onClick={() => addToCart(id)}
+              onClick={handleAdd}
               className="bg-transparent border-none p-0 flex items-center"
               aria-label="Add more"
             >

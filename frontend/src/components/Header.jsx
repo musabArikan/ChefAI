@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="relative w-full h-[22vw] min-h-[120px] max-h-[260px] mt-2 md:mt-3 mb-7 mx-auto overflow-hidden rounded-[15px]">
+    <div className="relative w-full h-[22vw] min-h-[120px] max-h-[300px] mt-2 md:mt-3 mb-7 mx-auto overflow-hidden rounded-[15px]">
       <img
         src="/header_img.png"
         alt="Header background"
@@ -19,7 +19,15 @@ const Header = () => {
           mission is to satisfy your cravings and elevate your dining
           experience, one delicious meal at a time.
         </p>
-        <button className="bg-white py-2 px-6 border-none font-medium text-gray-500 rounded-[50px] text-xs animate-fade-in-up animation-delay-700 hover:scale-105 transition-transform max-[750px]:py-[1vw] max-[750px]:px-[2vw]">
+        <button
+          className="bg-white py-2 px-6 border-none font-medium text-gray-500 rounded-[50px] text-xs animate-fade-in-up animation-delay-700 hover:scale-105 transition-transform max-[750px]:py-[1vw] max-[750px]:px-[2vw]"
+          onClick={() => {
+            const menuSection = document.getElementById("explore-menu");
+            if (menuSection) {
+              menuSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
           View Menu
         </button>
       </div>

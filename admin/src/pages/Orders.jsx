@@ -45,7 +45,6 @@ const Orders = () => {
   return (
     <div className="p-4 sm:p-8">
       <div className="w-full max-w-full">
-        {/* Masaüstü için tablo */}
         <div className="hidden min-[900px]:block overflow-x-auto">
           <table className="min-w-[900px] w-full bg-white rounded-2xl border border-gray-100">
             <thead>
@@ -141,7 +140,7 @@ const Orders = () => {
             </tbody>
           </table>
         </div>
-        {/* Mobil için kart görünümü */}
+
         <div className="block min-[900px]:hidden space-y-4">
           {orders.length === 0 && (
             <div className="text-center py-10 text-gray-400 text-lg">
