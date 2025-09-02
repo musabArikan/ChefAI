@@ -79,7 +79,7 @@ const StoreContextProvider = (props) => {
             await loadCartData(storedToken);
           }
         } catch (err) {
-          console.error("Demo kullanıcı ile otomatik giriş başarısız:", err);
+          console.error("Demo user error:", err);
         }
       } else {
         setToken(storedToken);
