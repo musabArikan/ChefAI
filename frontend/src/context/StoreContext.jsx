@@ -65,8 +65,23 @@ const StoreContextProvider = (props) => {
   useEffect(() => {
     const loadData = async () => {
       await fetchFoodList();
-      const storedToken = localStorage.getItem("token");
-      if (storedToken) {
+      let storedToken = localStorage.getItem("token");
+      if (!storedToken) {
+        try {
+          const response = await axios.post(`${url}/api/user/login`, {
+            email: "arikan950@gmail.com",
+            password: "123456789",
+          });
+          if (response.data.success && response.data.token) {
+            storedToken = response.data.token;
+            localStorage.setItem("token", storedToken);
+            setToken(storedToken);
+            await loadCartData(storedToken);
+          }
+        } catch (err) {
+          console.error("Demo kullanıcı ile otomatik giriş başarısız:", err);
+        }
+      } else {
         setToken(storedToken);
         await loadCartData(storedToken);
       }
