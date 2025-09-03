@@ -9,6 +9,8 @@ import { StoreContext } from "../context/StoreContext";
 const Navbar = ({ setShowLogin }) => {
   const [activeSection, setActiveSection] = useState("home");
   const [profileOpen, setProfileOpen] = useState(false);
+  // Detect mobile device
+  const isMobile = window.innerWidth <= 900;
   const { getTotalCartAmount, cartItems, token, setToken } =
     useContext(StoreContext);
 
@@ -123,18 +125,31 @@ const Navbar = ({ setShowLogin }) => {
             Sign In
           </button>
         ) : (
-          <div className="navbar-profile relative" tabIndex={0}>
+          <div
+            className="navbar-profile relative group"
+            tabIndex={0}
+            onMouseEnter={() => {
+              if (!isMobile) setProfileOpen(true);
+            }}
+            onMouseLeave={() => {
+              if (!isMobile) setProfileOpen(false);
+            }}
+          >
             <img
               src={assets.profile_icon}
               alt=""
               className="w-10 h-10 md:w-11 md:h-11 rounded-full shadow-sm border border-[tomato] cursor-pointer"
-              onClick={() => setProfileOpen((prev) => !prev)}
+              onClick={() => {
+                if (isMobile) setProfileOpen((prev) => !prev);
+              }}
             />
             <ul
               className={`navbar-profile-dropdown absolute right-0 z-20 flex-col min-w-[160px] gap-1 bg-white px-4 py-3 rounded-xl border border-[tomato] mt-2 list-none transition-all duration-100 ease-in ${
                 profileOpen ? "visible opacity-100" : "invisible opacity-0"
-              }`}
-              style={{ pointerEvents: profileOpen ? "auto" : "none" }}
+              } group-hover:visible group-hover:opacity-100 md:pointer-events-auto`}
+              style={{
+                pointerEvents: profileOpen || !isMobile ? "auto" : "none",
+              }}
             >
               <li
                 className="flex items-center gap-3 px-3 py-2 hover:text-[tomato] rounded-lg cursor-pointer transition-colors"
