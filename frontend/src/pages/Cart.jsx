@@ -73,7 +73,7 @@ const Cart = () => {
                   <td className="py-4 px-4">
                     <button
                       onClick={() => handleRemove(item._id, item.name)}
-                      className="text-xs cursor-pointer text-red-500 hover:text-red-700"
+                      className="text-sm cursor-pointer text-red-500 hover:text-red-700"
                       aria-label={`Remove ${item.name} from cart`}
                     >
                       Remove

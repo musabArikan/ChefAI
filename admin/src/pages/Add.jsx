@@ -44,6 +44,9 @@ const Add = () => {
   };
   return (
     <div className="w-[70%] ml-[max(5vw,25px)] mt-[50px] text-gray-500 text-base">
+      <h2 className="text-2xl font-bold mb-8 text-gray-800 tracking-tight">
+        Add Food
+      </h2>
       <form className="flex flex-col gap-5" onSubmit={onSubmitHandler}>
         <div className="flex flex-col gap-2.5">
           <p>Upload Image</p>

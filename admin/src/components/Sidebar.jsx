@@ -9,21 +9,21 @@ const Sidebar = () => {
           className="flex items-center gap-3 border border-gray-400 border-r-0 py-2 px-2.5 rounded-l cursor-pointer hover:bg-gray-50 transition-colors"
         >
           <img src={assets.add_icon} alt="" className="w-5 h-5" />
-          <p className="max-[900px]:hidden">Add Items</p>
+          <p className="max-[900px]:hidden">Add Food</p>
         </NavLink>
         <NavLink
           to={"/list"}
           className="flex items-center gap-3 border border-gray-400 border-r-0 py-2 px-2.5 rounded-l cursor-pointer hover:bg-gray-50 transition-colors"
         >
           <img src={assets.order_icon} alt="" className="w-5 h-5" />
-          <p className="max-[900px]:hidden">List Items</p>
+          <p className="max-[900px]:hidden">Food List</p>
         </NavLink>
         <NavLink
           to={"/orders"}
           className="flex items-center gap-3 border border-gray-400 border-r-0 py-2 px-2.5 rounded-l cursor-pointer hover:bg-gray-50 transition-colors"
         >
           <img src={assets.order_icon} alt="" className="w-5 h-5" />
-          <p className="max-[900px]:hidden">Orders</p>
+          <p className="max-[900px]:hidden">Order Management</p>
         </NavLink>
       </div>
     </div>

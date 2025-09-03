@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -31,39 +30,114 @@ const List = () => {
   }, []);
 
   return (
-    <div className="w-[70%] ml-[max(5vw,25px)] mt-[50px] text-gray-500 text-base flex flex-col gap-5">
-      <p>All Foods List</p>
-      <div className="flex flex-col">
-        {/* Table Header */}
-        <div className="grid grid-cols-[0.5fr_2fr_1fr_1fr_0.5fr] items-center py-3 px-4 gap-2.5 border-b border-[#cacaca] text-[13px] bg-[#f9f9f9] max-[600px]:hidden">
-          <b>Image</b>
-          <b>Name</b>
-          <b>Category</b>
-          <b>Price</b>
-          <b>Action</b>
+    <div className="p-4 sm:p-8 max-[900px]:w-[80%]">
+      <h2 className="text-2xl font-bold mb-8 text-gray-800 tracking-tight">
+        Food List
+      </h2>
+      <div className="w-full max-w-full">
+        {/* Masaüstü için tablo */}
+        <div className="hidden min-[900px]:block overflow-x-auto">
+          <table className="min-w-[900px] w-full bg-white rounded-2xl border border-gray-100">
+            <thead>
+              <tr className="text-gray-700 text-sm">
+                <th className="py-4 px-4 text-left"></th>
+                <th className="py-4 px-4 text-left">Name</th>
+                <th className="py-4 px-4 text-left">Category</th>
+                <th className="py-4 px-4 text-left">Price</th>
+                <th className="py-4 px-4 text-left">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {list.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={5}
+                    className="text-center py-10 text-gray-400 text-lg"
+                  >
+                    No foods found.
+                  </td>
+                </tr>
+              )}
+              {list.map((item) => (
+                <tr
+                  key={item._id}
+                  className="border-b border-gray-100 last:border-b-0 hover:bg-red-100/15 transition group"
+                >
+                  <td className="py-4 px-4">
+                    <div className="flex items-center justify-center bg-gray-100 rounded-xl w-10 h-10">
+                      <img
+                        src={`${url}/images/${item.image}`}
+                        alt={item.name}
+                        className="w-8 h-8 object-cover rounded"
+                      />
+                    </div>
+                  </td>
+                  <td className="py-4 px-4 font-semibold text-gray-800">
+                    {item.name}
+                  </td>
+                  <td className="py-4 px-4 text-xs text-gray-700">
+                    {item.category}
+                  </td>
+                  <td className="py-4 px-4 text-[tomato] font-bold">
+                    ${item.price}
+                  </td>
+                  <td className="py-4 px-4">
+                    <button
+                      onClick={() => removeFood(item._id)}
+                      className="text-xs text-red-500 hover:text-red-700 font-bold  cursor-pointer"
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        {/* Table Rows */}
-        {list.map((item, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-[0.5fr_2fr_1fr_1fr_0.5fr] items-center py-3 px-4 gap-2.5 border-b border-[#cacaca] text-[13px] max-[600px]:grid-cols-[1fr_3fr_1fr] max-[600px]:gap-4"
-          >
-            <img
-              src={`${url}/images/` + item.image}
-              alt={item.name}
-              className="w-[50px]"
-            />
-            <p>{item.name}</p>
-            <p className="max-[600px]:hidden">{item.category}</p>
-            <p className="max-[600px]:hidden">${item.price}</p>
-            <p
-              onClick={() => removeFood(item._id)}
-              className="cursor-pointer text-red-500 font-bold"
+        {/* Mobil için kart görünümü */}
+        <div className="block min-[900px]:hidden space-y-4">
+          {list.length === 0 && (
+            <div className="text-center py-10 text-gray-400 text-lg">
+              No foods found.
+            </div>
+          )}
+          {list.map((item) => (
+            <div
+              key={item._id}
+              className="bg-white rounded-xl shadow border border-gray-100 p-4 flex flex-col gap-2"
             >
-              X
-            </p>
-          </div>
-        ))}
+              <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center justify-center bg-gray-100 rounded-xl w-10 h-10">
+                  <img
+                    src={`${url}/images/${item.image}`}
+                    alt={item.name}
+                    className="w-8 h-8 object-cover rounded"
+                  />
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-800">{item.name}</div>
+                  <div className="text-xs text-gray-500">{item.category}</div>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2 text-xs">
+                <span className="bg-gray-100 rounded px-2 py-1">
+                  Price:{" "}
+                  <span className="font-semibold text-[tomato]">
+                    ${item.price}
+                  </span>
+                </span>
+              </div>
+              <div className="flex justify-end mt-2">
+                <button
+                  onClick={() => removeFood(item._id)}
+                  className="text-xs text-red-500 hover:text-red-700 font-bold cursor-pointer"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const PlaceOrder = () => {
     firstName: "Musab",
     lastName: "Arıkan",
     email: "arikan950@hotmail.com",
-    street: "Armutlu",
+    street: "Adnan Kahveci Neighborhood Armutlu Street",
     city: "İstanbul",
     state: "Marmara",
     zipcode: "34760",

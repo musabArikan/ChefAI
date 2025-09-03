@@ -18,7 +18,7 @@ const Navbar = ({ setShowLogin }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="py-2 md:py-5 flex justify-between md:justify-around items-center navbar sticky top-0 z-50 bg-white w-full px-15 ">
+    <nav className="py-2 md:py-5 flex justify-between md:justify-around items-center navbar sticky top-0 z-50 bg-white w-full px-15 ">
       <Link to="/">
         <img
           src={assets.logo}
@@ -155,7 +155,7 @@ const Navbar = ({ setShowLogin }) => {
           </div>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 
