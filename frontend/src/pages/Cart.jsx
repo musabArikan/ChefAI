@@ -18,6 +18,9 @@ const Cart = () => {
     <div className="p-4 sm:p-8">
       <div className="w-full max-w-full">
         <div className="hidden min-[900px]:block overflow-x-auto">
+          <h2 className="text-2xl font-bold mb-10 text-start text-gray-800 tracking-tight">
+            My Cart
+          </h2>
           <table className="min-w-[900px] w-full bg-white rounded-2xl border border-gray-100">
             <thead>
               <tr className="text-gray-700 text-sm">

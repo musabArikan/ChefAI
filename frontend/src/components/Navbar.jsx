@@ -8,6 +8,7 @@ import { StoreContext } from "../context/StoreContext";
 
 const Navbar = ({ setShowLogin }) => {
   const [activeSection, setActiveSection] = useState("home");
+  const [profileOpen, setProfileOpen] = useState(false);
   const { getTotalCartAmount, cartItems, token, setToken } =
     useContext(StoreContext);
 
@@ -18,7 +19,7 @@ const Navbar = ({ setShowLogin }) => {
   const navigate = useNavigate();
 
   return (
-    <nav className="py-2 md:py-5 flex justify-between md:justify-around items-center navbar sticky top-0 z-50 bg-white w-full px-15 ">
+    <nav className="py-2 md:py-5 flex justify-between md:justify-around items-center navbar sticky top-0 z-50 bg-white w-full px-5 md:px-15 ">
       <Link to="/">
         <img
           src={assets.logo}
@@ -94,6 +95,12 @@ const Navbar = ({ setShowLogin }) => {
           </li>
         </a>
       </ul>
+      <button
+        className="md:ml-4 px-2 py-1 cursor-pointer rounded-full border-2 border-[tomato] text-[tomato] bg-white hover:bg-[tomato]/10 transition text-xs md:text-sm"
+        onClick={() => window.open("http://localhost:5174/", "_blank")}
+      >
+        Admin Panel
+      </button>
       <div className="flex items-center gap-10 navbar-right max-[1050px]:gap-[30px] max-[900px]:gap-5">
         {token && (
           <div className="relative">
@@ -116,19 +123,25 @@ const Navbar = ({ setShowLogin }) => {
             Sign In
           </button>
         ) : (
-          <div className="navbar-profile relative group" tabIndex={0}>
+          <div className="navbar-profile relative" tabIndex={0}>
             <img
               src={assets.profile_icon}
               alt=""
-              className="w-10 h-10 md:w-11 md:h-11 rounded-full  shadow-sm border border-[tomato] "
+              className="w-10 h-10 md:w-11 md:h-11 rounded-full shadow-sm border border-[tomato] cursor-pointer"
+              onClick={() => setProfileOpen((prev) => !prev)}
             />
             <ul
-              className="navbar-profile-dropdown absolute right-0 z-20 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus:visible group-focus:opacity-100 flex-col min-w-[160px] gap-1 bg-white px-4 py-3 rounded-xl border border-[tomato] mt-2 list-none transition-all duration-100 ease-in"
-              style={{ pointerEvents: "auto" }}
+              className={`navbar-profile-dropdown absolute right-0 z-20 flex-col min-w-[160px] gap-1 bg-white px-4 py-3 rounded-xl border border-[tomato] mt-2 list-none transition-all duration-100 ease-in ${
+                profileOpen ? "visible opacity-100" : "invisible opacity-0"
+              }`}
+              style={{ pointerEvents: profileOpen ? "auto" : "none" }}
             >
               <li
                 className="flex items-center gap-3 px-3 py-2 hover:text-[tomato] rounded-lg cursor-pointer transition-colors"
-                onClick={() => navigate("/my-orders")}
+                onClick={() => {
+                  navigate("/my-orders");
+                  setProfileOpen(false);
+                }}
               >
                 <img src={assets.bag_icon} alt="Orders" className="w-6 h-6" />
                 <span className="text-base  font-medium">Orders</span>
@@ -146,6 +159,7 @@ const Navbar = ({ setShowLogin }) => {
                     localStorage.removeItem("token");
                     setToken("");
                     navigate("/");
+                    setProfileOpen(false);
                   }}
                 >
                   Logout

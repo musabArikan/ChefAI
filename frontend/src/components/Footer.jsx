@@ -13,7 +13,7 @@ const Footer = () => {
           <img
             src={assets.logo}
             alt=""
-            className="w-full h-[70px] md:w-[200px] md:h-[57px] object-cover logo "
+            className="w-full h-[100px] md:w-[200px] md:h-[57px] object-cover logo "
           />
           <p className="text-sm font-medium text-white">
             ChefAI is your smart AI-powered chef and food ordering assistant.
