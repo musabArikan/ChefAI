@@ -99,7 +99,7 @@ const Navbar = ({ setShowLogin }) => {
       </ul>
       <button
         className="md:ml-4 px-2 py-1 cursor-pointer rounded-full border-2 border-[tomato] text-[tomato] bg-white hover:bg-[tomato]/10 transition text-xs md:text-sm"
-        onClick={() => window.open("http://localhost:5174/", "_blank")}
+        onClick={() => window.open("https://chefai-dashboard.onrender.com", "_blank")}
       >
         Admin Panel
       </button>
