@@ -99,7 +99,9 @@ const Navbar = ({ setShowLogin }) => {
       </ul>
       <button
         className="md:ml-4 px-2 py-1 cursor-pointer rounded-full border-2 border-[tomato] text-[tomato] bg-white hover:bg-[tomato]/10 transition text-xs md:text-sm"
-        onClick={() => window.open("https://chefai-dashboard.onrender.com", "_blank")}
+        onClick={() =>
+          window.open("https://chefai-dashboard.onrender.com", "_blank")
+        }
       >
         Admin Panel
       </button>
@@ -119,8 +121,7 @@ const Navbar = ({ setShowLogin }) => {
         {!token ? (
           <button
             onClick={() => setShowLogin(true)}
-            className="bg-transparent text-lg text-[#49557e] border border-[tomato] py-[6px] px-[30px] 
-        rounded-[50px] cursor-pointer hover:bg-[tomato] hover:text-white transition-all duration-300 max-[1050px]:py-2 max-[1050px]:px-[25px] max-[900px]:py-[7px] max-[900px]:px-5 "
+            className="bg-transparent text-sm md:text-base text-[#49557e] border border-[tomato] py-1 px-4 md:py-1.5 md:px-6 rounded-full cursor-pointer hover:bg-[tomato] hover:text-white transition-all duration-300"
           >
             Sign In
           </button>
