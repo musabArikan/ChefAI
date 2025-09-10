@@ -47,7 +47,7 @@ const PlaceOrder = () => {
         headers: { token },
       });
       toast.success("Your order has been received!", {
-        position: "top-right",
+        position: "bottom-right",
       });
       setCartItems({});
       setTimeout(() => {

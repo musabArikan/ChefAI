@@ -21,8 +21,12 @@ const removeFromCart = async (req, res) => {
   try {
     let userData = await userModel.findById(req.userId);
     let cartData = await userData.cartData;
-    if (cartData[req.body.itemId] > 0) {
+    if (req.body.removeAll) {
+      delete cartData[req.body.itemId];
+    } else if (cartData[req.body.itemId] > 1) {
       cartData[req.body.itemId] -= 1;
+    } else {
+      delete cartData[req.body.itemId];
     }
     await userModel.findByIdAndUpdate(req.userId, { cartData });
     res.json({ success: true, message: "Removed From Cart" });

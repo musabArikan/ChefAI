@@ -17,7 +17,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
     toast.info(`${name} removed from cart`, { position: "bottom-right" });
   };
   return (
-    <div className="w-full m-auto rounded-[15px] border border-[tomato]/50 transition-all  hover:shadow-sm  cursor-pointer">
+    <div className="w-full m-auto rounded-[15px] border border-[tomato]/50 transition-all  hover:shadow-sm  ">
       <div className="relative">
         <img
           src={url + "/images/" + image}
@@ -39,7 +39,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
             <button
               type="button"
               onClick={handleRemove}
-              className="bg-transparent border-none p-0 flex items-center"
+              className="bg-transparent border-none p-0 flex items-center cursor-pointer"
               aria-label="Remove from cart"
             >
               <FaMinusCircle size={20} color="#ef4444" />
@@ -48,7 +48,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
             <button
               type="button"
               onClick={handleAdd}
-              className="bg-transparent border-none p-0 flex items-center"
+              className="bg-transparent cursor-pointer border-none p-0 flex items-center"
               aria-label="Add more"
             >
               <FaPlusCircle size={20} color="#22c55e" />

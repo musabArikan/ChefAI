@@ -9,7 +9,7 @@ import { StoreContext } from "../context/StoreContext";
 const Navbar = ({ setShowLogin }) => {
   const [activeSection, setActiveSection] = useState("home");
   const [profileOpen, setProfileOpen] = useState(false);
-  // Detect mobile device
+
   const isMobile = window.innerWidth <= 900;
   const { getTotalCartAmount, cartItems, token, setToken } =
     useContext(StoreContext);
@@ -97,15 +97,16 @@ const Navbar = ({ setShowLogin }) => {
           </li>
         </a>
       </ul>
-      <button
-        className="md:ml-4 px-2 py-1 cursor-pointer rounded-full border-2 border-[tomato] text-[tomato] bg-white hover:bg-[tomato]/10 transition text-xs md:text-sm"
-        onClick={() =>
-          window.open("https://chefai-dashboard.onrender.com", "_blank")
-        }
-      >
-        Admin Panel
-      </button>
+
       <div className="flex items-center gap-10 navbar-right max-[1050px]:gap-[30px] max-[900px]:gap-5">
+        <button
+          className="md:ml-4 px-2 py-1 cursor-pointer rounded-full border-2 border-[tomato] text-[tomato] bg-white hover:bg-[tomato]/10 transition text-xs md:text-sm"
+          onClick={() =>
+            window.open("https://chefai-dashboard.onrender.com", "_blank")
+          }
+        >
+          Admin Panel
+        </button>
         {token && (
           <div className="relative">
             <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>

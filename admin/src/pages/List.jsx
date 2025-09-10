@@ -35,7 +35,7 @@ const List = () => {
         Food List
       </h2>
       <div className="w-full max-w-full">
-        {/* Masaüstü için tablo */}
+        {/* Desktop Table*/}
         <div className="hidden min-[900px]:block overflow-x-auto">
           <table className="min-w-[900px] w-full bg-white rounded-2xl border border-gray-100">
             <thead>
@@ -64,12 +64,24 @@ const List = () => {
                   className="border-b border-gray-100 last:border-b-0 hover:bg-red-100/15 transition group"
                 >
                   <td className="py-4 px-4">
-                    <div className="flex items-center justify-center bg-gray-100 rounded-xl w-10 h-10">
-                      <img
-                        src={`${url}/images/${item.image}`}
-                        alt={item.name}
-                        className="w-8 h-8 object-cover rounded"
-                      />
+                    <div className="flex items-center justify-center bg-gray-100 rounded-xl w-23 h-17">
+                      {item.image ? (
+                        <img
+                          src={
+                            item.image.startsWith("http")
+                              ? item.image
+                              : `${url}/images/${item.image}`
+                          }
+                          alt={item.name}
+                          className="w-23 h-17 object-cover rounded-[4px] border border-gray-200"
+                        />
+                      ) : (
+                        <img
+                          src={assets.parcel_icon}
+                          alt="parcel"
+                          className="w-16 h-16 rounded-[4px] border border-gray-200 object-cover"
+                        />
+                      )}
                     </div>
                   </td>
                   <td className="py-4 px-4 font-semibold text-gray-800">
@@ -94,7 +106,7 @@ const List = () => {
             </tbody>
           </table>
         </div>
-        {/* Mobil için kart görünümü */}
+        {/* Mobil Table */}
         <div className="block min-[900px]:hidden space-y-4">
           {list.length === 0 && (
             <div className="text-center py-10 text-gray-400 text-lg">
@@ -107,13 +119,23 @@ const List = () => {
               className="bg-white rounded-xl shadow border border-gray-100 p-4 flex flex-col gap-2"
             >
               <div className="flex items-center gap-3 mb-2">
-                <div className="flex items-center justify-center bg-gray-100 rounded-xl w-10 h-10">
+                {item.image ? (
                   <img
-                    src={`${url}/images/${item.image}`}
+                    src={
+                      item.image.startsWith("http")
+                        ? item.image
+                        : `${url}/images/${item.image}`
+                    }
                     alt={item.name}
-                    className="w-8 h-8 object-cover rounded"
+                    className="w-[92px] h-[68px] object-cover rounded-[4px] border border-gray-200"
                   />
-                </div>
+                ) : (
+                  <img
+                    src={assets.parcel_icon}
+                    alt="parcel"
+                    className="w-[92px] h-[68px] rounded-[4px] border border-gray-200 object-cover"
+                  />
+                )}
                 <div>
                   <div className="font-semibold text-gray-800">{item.name}</div>
                   <div className="text-xs text-gray-500">{item.category}</div>

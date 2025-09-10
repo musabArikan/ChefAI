@@ -12,7 +12,7 @@ const Home = () => {
     setCategory(cat);
     setTimeout(() => {
       if (foodRef.current) {
-        const navbarHeight = 200;
+        const navbarHeight = 340;
         const y =
           foodRef.current.getBoundingClientRect().top +
           window.pageYOffset -

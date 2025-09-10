@@ -51,9 +51,9 @@ body {
   animation-delay: 0.7s;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .cart-card {
   background: white;
@@ -79,4 +79,8 @@ body {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
+}
+
+.Toastify__progress-bar--info {
+  background: #ff6347 !important;
 }

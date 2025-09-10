@@ -77,27 +77,23 @@ const Orders = () => {
                     className="border-b  border-gray-100 last:border-b-0 hover:bg-red-100/15 transition group"
                   >
                     <td className="py-4 px-4">
-                      <div className="flex items-center justify-center bg-gray-100 rounded-xl w-14 h-14">
-                        {order.items &&
-                        order.items[0] &&
-                        order.items[0].image ? (
-                          <img
-                            src={
-                              order.items[0].image.startsWith("http")
-                                ? order.items[0].image
-                                : `${url}/images/${order.items[0].image}`
-                            }
-                            alt={order.items[0].name}
-                            className="w-11 h-11 object-cover rounded"
-                          />
-                        ) : (
-                          <img
-                            src={assets.parcel_icon}
-                            alt="parcel"
-                            className="w-6 h-6"
-                          />
-                        )}
-                      </div>
+                      {order.items && order.items[0] && order.items[0].image ? (
+                        <img
+                          src={
+                            order.items[0].image.startsWith("http")
+                              ? order.items[0].image
+                              : `${url}/images/${order.items[0].image}`
+                          }
+                          alt={order.items[0].name}
+                          className="w-23 h-17 object-cover rounded-[4px] border border-gray-200"
+                        />
+                      ) : (
+                        <img
+                          src={assets.parcel_icon}
+                          alt="parcel"
+                          className="w-16 h-16 rounded-[4px] border border-gray-200 object-cover"
+                        />
+                      )}
                     </td>
                     <td className="py-4 px-4">
                       <div className="font-semibold text-gray-800">
@@ -180,28 +176,26 @@ const Orders = () => {
           {orders.map((order) => (
             <div
               key={order._id}
-              className="bg-white rounded-xl shadow border border-gray-100 p-2 flex flex-col gap-1"
+              className="bg-white rounded-xl shadow border border-gray-100 p-2 flex flex-col gap-3"
             >
               <div className="flex items-center gap-2 mb-1">
-                <div className="flex items-center justify-center bg-gray-100 rounded-xl w-9 h-9">
-                  {order.items && order.items[0] && order.items[0].image ? (
-                    <img
-                      src={
-                        order.items[0].image.startsWith("http")
-                          ? order.items[0].image
-                          : `${url}/images/${order.items[0].image}`
-                      }
-                      alt={order.items[0].name}
-                      className="w-7 h-7 object-cover rounded"
-                    />
-                  ) : (
-                    <img
-                      src={assets.parcel_icon}
-                      alt="parcel"
-                      className="w-5 h-5"
-                    />
-                  )}
-                </div>
+                {order.items && order.items[0] && order.items[0].image ? (
+                  <img
+                    src={
+                      order.items[0].image.startsWith("http")
+                        ? order.items[0].image
+                        : `${url}/images/${order.items[0].image}`
+                    }
+                    alt={order.items[0].name}
+                    className="w-14 h-14 object-cover rounded-[4px] border border-gray-200"
+                  />
+                ) : (
+                  <img
+                    src={assets.parcel_icon}
+                    alt="parcel"
+                    className="w-10 h-10 rounded-[4px] border border-gray-200 object-cover"
+                  />
+                )}
                 <div>
                   <div className="font-semibold text-gray-800 text-sm">
                     {order.address?.firstName} {order.address?.lastName}

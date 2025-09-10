@@ -50,13 +50,11 @@ const Cart = () => {
                   className="border-b border-gray-100 last:border-b-0 hover:bg-red-100/15 transition group"
                 >
                   <td className="py-4 px-4">
-                    <div className="flex items-center justify-center bg-gray-100 rounded-xl w-14 h-14">
-                      <img
-                        src={url + "/images/" + item.image}
-                        alt={item.name}
-                        className="w-11 h-11 object-cover rounded"
-                      />
-                    </div>
+                    <img
+                      src={url + "/images/" + item.image}
+                      alt={item.name}
+                      className="w-[92px] h-[68px] object-cover rounded-[4px] border border-gray-200"
+                    />
                   </td>
                   <td className="py-4 px-4 font-semibold text-gray-800">
                     {item.name}
@@ -100,13 +98,11 @@ const Cart = () => {
               className="bg-white rounded-xl shadow border border-gray-100 p-4 flex flex-col gap-2"
             >
               <div className="flex items-center gap-3 mb-2">
-                <div className="flex items-center justify-center bg-gray-100 rounded-xl w-10 h-10">
-                  <img
-                    src={url + "/images/" + item.image}
-                    alt={item.name}
-                    className="w-6 h-6 object-cover rounded"
-                  />
-                </div>
+                <img
+                  src={url + "/images/" + item.image}
+                  alt={item.name}
+                  className="w-[92px] h-[68px] object-cover rounded-[4px] border border-gray-200"
+                />
                 <div>
                   <div className="font-semibold text-gray-800">{item.name}</div>
                   <div className="text-xs text-gray-500">
@@ -175,7 +171,7 @@ const Cart = () => {
                 window.scrollTo(0, 0);
               }}
               disabled={getTotalCartAmount() === 0}
-              className="mt-6 w-full sm:w-auto px-5 py-2 bg-[#ff4500] disabled:opacity-50 text-white rounded-md transition-colors"
+              className="mt-6 w-full sm:w-auto px-5 py-2 bg-[#ff4500] disabled:opacity-50 cursor-pointer text-white rounded-md transition-colors"
             >
               Proceed to Checkout
             </button>
@@ -189,7 +185,14 @@ const Cart = () => {
                 placeholder="Enter promo code"
                 className="flex-1 px-3 py-2 border rounded-md outline-none"
               />
-              <button className="px-4 py-2 bg-black text-white rounded-md">
+              <button
+                className="px-4 py-2 bg-black text-white rounded-md cursor-pointer"
+                onClick={() =>
+                  toast.success("Your code has been applied", {
+                    position: "bottom-right",
+                  })
+                }
+              >
                 Apply
               </button>
             </div>

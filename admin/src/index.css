@@ -11,6 +11,9 @@ hr {
   background-color: #a9a9a9;
 }
 .active {
-  background-color: #fff0ed;
+  @apply bg-red-100/35;
   border-color: tomato;
+}
+.Toastify__progress-bar--info {
+  background: #ff6347 !important;
 }
