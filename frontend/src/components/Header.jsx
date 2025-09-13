@@ -24,7 +24,7 @@ const Header = () => {
         </p>
         <div className="flex gap-2 mt-5">
           <button
-            className="py-1 px-3 md:py-1.5 md:px-4 text-xs md:text-sm font-semibold bg-white border-none rounded-full animate-fade-in-up animation-delay-700 hover:scale-105 transition-transform cursor-pointer "
+            className="py-1  px-3 md:py-1.5 md:px-4 text-xs md:text-sm font-semibold bg-white  rounded-full animate-fade-in-up animation-delay-700 hover:scale-105 transition-transform cursor-pointer "
             onClick={() => {
               const menuSection = document.getElementById("explore-menu");
               if (menuSection) {
