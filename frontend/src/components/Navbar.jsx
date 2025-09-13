@@ -100,7 +100,7 @@ const Navbar = ({ setShowLogin }) => {
 
       <div className="flex items-center gap-10 navbar-right max-[1050px]:gap-[30px] max-[900px]:gap-5">
         <button
-          className="md:ml-4 px-2 py-1 cursor-pointer rounded-full border-2 border-[tomato] text-[tomato] bg-white hover:bg-[tomato]/10 transition text-xs md:text-sm"
+          className="bg-transparent text-sm md:text-base text-[#49557e] border border-[tomato] py-1 px-4 md:py-1.5 md:px-6 rounded-full cursor-pointer hover:bg-[tomato] hover:text-white transition-all duration-300"
           onClick={() =>
             window.open("https://chefai-dashboard.onrender.com", "_blank")
           }

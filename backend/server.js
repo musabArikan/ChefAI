@@ -6,10 +6,10 @@ import foodRouter from "./routes/foodRoute.js";
 import userRouter from "./routes/userRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import aiRoute from "./routes/aiRoute.js";
 import "dotenv/config.js";
-// Load environment variables
-dotenv.config();
 
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -19,7 +19,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173", // frontend local
-      "http://localhost:5174", // admin local (gerekirse portu değiştirin)
+      "http://localhost:5174", // admin local
       "https://chefai-7d20.onrender.com", // frontend prod
       "https://chefai-dashboard.onrender.com", // admin prod
     ],
@@ -37,6 +37,7 @@ app.use("/api/food", foodRouter);
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
+app.use("/api/ai", aiRoute);
 
 // Connect host
 app.listen(PORT, () => {

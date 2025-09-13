@@ -1,3 +1,37 @@
+@keyframes assistant-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 99, 71, 0.7),
+      0 0 0 4px rgba(255, 99, 71, 0.15);
+    background-color: #ff6347;
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(255, 99, 71, 0.15),
+      0 0 0 8px rgba(255, 99, 71, 0.1);
+    background-color: #ff8266;
+  }
+}
+
+.animate-pulse-assistant {
+  animation: 4s infinite assistant-pulse;
+}
+@keyframes tomato-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 99, 71, 0.7),
+      0 0 0 4px rgba(255, 99, 71, 0.15);
+    background-color: #ff6347;
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(255, 99, 71, 0.2),
+      0 0 0 8px rgba(255, 99, 71, 0.1);
+    background-color: #ff8266;
+  }
+}
+
+.animate-tomato-pulse {
+  animation: tomato-pulse 1.2s infinite;
+}
 @import "tailwindcss";
 
 * {

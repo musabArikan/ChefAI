@@ -1,6 +1,9 @@
-import React from "react";
+import { useState } from "react";
+import AiOrderWidget from "./AiOrderWidget";
 
 const Header = () => {
+  const [aiOpen, setAiOpen] = useState(false);
+
   return (
     <div className="relative w-full h-[22vw] min-h-[120px] max-h-[300px] mt-2 md:mt-3 mb-7 mx-auto overflow-hidden rounded-[15px]">
       <img
@@ -19,18 +22,29 @@ const Header = () => {
           mission is to satisfy your cravings and elevate your dining
           experience, one delicious meal at a time.
         </p>
-        <button
-          className="bg-white py-2 px-6 border-none font-medium text-gray-500 rounded-[50px] text-xs animate-fade-in-up animation-delay-700 hover:scale-105 transition-transform max-[750px]:py-[1vw] max-[750px]:px-[2vw]"
-          onClick={() => {
-            const menuSection = document.getElementById("explore-menu");
-            if (menuSection) {
-              menuSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
-        >
-          View Menu
-        </button>
+        <div className="flex gap-2 mt-5">
+          <button
+            className="py-1 px-3 md:py-1.5 md:px-4 text-xs md:text-sm font-semibold bg-white border-none rounded-full animate-fade-in-up animation-delay-700 hover:scale-105 transition-transform cursor-pointer "
+            onClick={() => {
+              const menuSection = document.getElementById("explore-menu");
+              if (menuSection) {
+                const y =
+                  menuSection.getBoundingClientRect().top + window.scrollY - 60;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }
+            }}
+          >
+            View Menu
+          </button>
+          <button
+            className="py-1 px-3 md:py-1.5 md:px-4 text-xs md:text-sm font-bold bg-[#fff5f0] text-[tomato] rounded-full border border-[tomato] hover:scale-105 transition-all duration-150 flex items-center gap-2 animate-fade-in-up animation-delay-800 focus:outline-none cursor-pointer focus:ring-2 focus:ring-[tomato]"
+            onClick={() => setAiOpen(true)}
+          >
+            Order with AI
+          </button>
+        </div>
       </div>
+      <AiOrderWidget open={aiOpen} onClose={() => setAiOpen(false)} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import Header from "../components/Header";
+import AiAssistantWidget from "../components/AiAssistantWidget";
 import ExploreMenu from "../components/ExploreMenu";
 import FoodDisplay from "../components/FoodDisplay";
 import AppDownload from "../components/AppDownload";
@@ -29,6 +30,7 @@ const Home = () => {
         <FoodDisplay category={category} />
       </div>
       <AppDownload />
+      <AiAssistantWidget />
     </div>
   );
 };
