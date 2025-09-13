@@ -7,6 +7,7 @@ import AppDownload from "../components/AppDownload";
 
 const Home = () => {
   const [category, setCategory] = useState("All");
+  const [orderWidgetOpen, setOrderWidgetOpen] = useState(false);
   const foodRef = useRef(null);
 
   const handleCategoryChange = (cat) => {
@@ -24,13 +25,17 @@ const Home = () => {
   };
   return (
     <div>
-      <Header />
+      <Header
+        orderWidgetOpen={orderWidgetOpen}
+        setOrderWidgetOpen={setOrderWidgetOpen}
+      />
       <ExploreMenu category={category} setCategory={handleCategoryChange} />
       <div ref={foodRef} id="food-display-scroll-point">
         <FoodDisplay category={category} />
       </div>
       <AppDownload />
-      <AiAssistantWidget />
+
+      {!orderWidgetOpen && <AiAssistantWidget />}
     </div>
   );
 };

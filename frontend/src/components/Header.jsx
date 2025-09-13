@@ -1,9 +1,7 @@
 import { useState } from "react";
 import AiOrderWidget from "./AiOrderWidget";
 
-const Header = () => {
-  const [aiOpen, setAiOpen] = useState(false);
-
+const Header = ({ orderWidgetOpen, setOrderWidgetOpen }) => {
   return (
     <div className="relative w-full h-[22vw] min-h-[120px] max-h-[300px] mt-2 md:mt-3 mb-7 mx-auto overflow-hidden rounded-[15px]">
       <img
@@ -38,13 +36,16 @@ const Header = () => {
           </button>
           <button
             className="py-1 px-3 md:py-1.5 md:px-4 text-xs md:text-sm font-bold bg-[#fff5f0] text-[tomato] rounded-full border border-[tomato] hover:scale-105 transition-all duration-150 flex items-center gap-2 animate-fade-in-up animation-delay-800 focus:outline-none cursor-pointer focus:ring-2 focus:ring-[tomato]"
-            onClick={() => setAiOpen(true)}
+            onClick={() => setOrderWidgetOpen(true)}
           >
             Order with AI
           </button>
         </div>
       </div>
-      <AiOrderWidget open={aiOpen} onClose={() => setAiOpen(false)} />
+      <AiOrderWidget
+        open={orderWidgetOpen}
+        onClose={() => setOrderWidgetOpen(false)}
+      />
     </div>
   );
 };
