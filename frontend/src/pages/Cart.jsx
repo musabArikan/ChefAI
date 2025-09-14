@@ -1,11 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import TableLoading from "../components/TableLoading";
 
 const Cart = () => {
   const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 600);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleRemove = (id, name) => {
     removeFromCart(id);
@@ -13,6 +20,10 @@ const Cart = () => {
   };
   const navigate = useNavigate();
   const itemsInCart = food_list.filter((it) => cartItems[it._id] > 0);
+
+  if (loading) {
+    return <TableLoading />;
+  }
 
   return (
     <div className="p-4 sm:p-8">

@@ -7,6 +7,7 @@ import Orders from "./pages/Orders";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
+
 const App = () => {
   const url = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();

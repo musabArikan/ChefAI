@@ -3,16 +3,24 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 import { url } from "../assets/assets";
+import TableLoading from "../components/TableLoading";
 const List = () => {
   const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchList = async () => {
-    const response = await axios.get(`${url}/api/food/list`);
-    if (response.data.success) {
-      setList(response.data.data);
-    } else {
-      toast.error("Error");
+    setLoading(true);
+    try {
+      const response = await axios.get(`${url}/api/food/list`);
+      if (response.data.success) {
+        setList(response.data.data);
+      } else {
+        toast.error("Error");
+      }
+    } catch (err) {
+      toast.error("Error fetching foods");
     }
+    setLoading(false);
   };
 
   const removeFood = async (foodId) => {
@@ -48,7 +56,15 @@ const List = () => {
               </tr>
             </thead>
             <tbody>
-              {list.length === 0 && (
+              {loading ? (
+                <tr>
+                  <td colSpan={5} className="py-16">
+                    <div className="flex justify-center items-center w-full h-full">
+                      <TableLoading />
+                    </div>
+                  </td>
+                </tr>
+              ) : list.length === 0 ? (
                 <tr>
                   <td
                     colSpan={5}
@@ -57,108 +73,114 @@ const List = () => {
                     No foods found.
                   </td>
                 </tr>
+              ) : (
+                list.map((item) => (
+                  <tr
+                    key={item._id}
+                    className="border-b border-gray-100 last:border-b-0 hover:bg-red-100/15 transition group"
+                  >
+                    <td className="py-4 px-4">
+                      <div className="flex items-center justify-center bg-gray-100 rounded-xl w-23 h-17">
+                        {item.image ? (
+                          <img
+                            src={
+                              item.image.startsWith("http")
+                                ? item.image
+                                : `${url}/images/${item.image}`
+                            }
+                            alt={item.name}
+                            className="w-23 h-17 object-cover rounded-[4px] border border-gray-200"
+                          />
+                        ) : (
+                          <img
+                            src={assets.parcel_icon}
+                            alt="parcel"
+                            className="w-16 h-16 rounded-[4px] border border-gray-200 object-cover"
+                          />
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-4 px-4 font-semibold text-gray-800">
+                      {item.name}
+                    </td>
+                    <td className="py-4 px-4 text-xs text-gray-700">
+                      {item.category}
+                    </td>
+                    <td className="py-4 px-4 text-[tomato] font-bold">
+                      ${item.price}
+                    </td>
+                    <td className="py-4 px-4">
+                      <button
+                        onClick={() => removeFood(item._id)}
+                        className="text-xs text-red-500 hover:text-red-700 font-bold  cursor-pointer"
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))
               )}
-              {list.map((item) => (
-                <tr
-                  key={item._id}
-                  className="border-b border-gray-100 last:border-b-0 hover:bg-red-100/15 transition group"
-                >
-                  <td className="py-4 px-4">
-                    <div className="flex items-center justify-center bg-gray-100 rounded-xl w-23 h-17">
-                      {item.image ? (
-                        <img
-                          src={
-                            item.image.startsWith("http")
-                              ? item.image
-                              : `${url}/images/${item.image}`
-                          }
-                          alt={item.name}
-                          className="w-23 h-17 object-cover rounded-[4px] border border-gray-200"
-                        />
-                      ) : (
-                        <img
-                          src={assets.parcel_icon}
-                          alt="parcel"
-                          className="w-16 h-16 rounded-[4px] border border-gray-200 object-cover"
-                        />
-                      )}
-                    </div>
-                  </td>
-                  <td className="py-4 px-4 font-semibold text-gray-800">
-                    {item.name}
-                  </td>
-                  <td className="py-4 px-4 text-xs text-gray-700">
-                    {item.category}
-                  </td>
-                  <td className="py-4 px-4 text-[tomato] font-bold">
-                    ${item.price}
-                  </td>
-                  <td className="py-4 px-4">
-                    <button
-                      onClick={() => removeFood(item._id)}
-                      className="text-xs text-red-500 hover:text-red-700 font-bold  cursor-pointer"
-                    >
-                      Remove
-                    </button>
-                  </td>
-                </tr>
-              ))}
             </tbody>
           </table>
         </div>
         {/* Mobil Table */}
         <div className="block min-[900px]:hidden space-y-4">
-          {list.length === 0 && (
+          {loading ? (
+            <TableLoading />
+          ) : list.length === 0 ? (
             <div className="text-center py-10 text-gray-400 text-lg">
               No foods found.
             </div>
-          )}
-          {list.map((item) => (
-            <div
-              key={item._id}
-              className="bg-white rounded-xl shadow border border-gray-100 p-4 flex flex-col gap-2"
-            >
-              <div className="flex items-center gap-3 mb-2">
-                {item.image ? (
-                  <img
-                    src={
-                      item.image.startsWith("http")
-                        ? item.image
-                        : `${url}/images/${item.image}`
-                    }
-                    alt={item.name}
-                    className="w-[92px] h-[68px] object-cover rounded-[4px] border border-gray-200"
-                  />
-                ) : (
-                  <img
-                    src={assets.parcel_icon}
-                    alt="parcel"
-                    className="w-[92px] h-[68px] rounded-[4px] border border-gray-200 object-cover"
-                  />
-                )}
-                <div>
-                  <div className="font-semibold text-gray-800">{item.name}</div>
-                  <div className="text-xs text-gray-500">{item.category}</div>
+          ) : (
+            list.map((item) => (
+              <div
+                key={item._id}
+                className="bg-white rounded-xl shadow border border-gray-100 p-4 flex flex-col gap-2"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  {item.image ? (
+                    <img
+                      src={
+                        item.image.startsWith("http")
+                          ? item.image
+                          : `${url}/images/${item.image}`
+                      }
+                      alt={item.name}
+                      className="w-[92px] h-[68px] object-cover rounded-[4px] border border-gray-200"
+                    />
+                  ) : (
+                    <img
+                      src={assets.parcel_icon}
+                      alt="parcel"
+                      className="w-[92px] h-[68px] rounded-[4px] border border-gray-200 object-cover"
+                    />
+                  )}
+                  <div>
+                    <div className="font-semibold text-gray-800">
+                      {item.name}
+                    </div>
+                    <div className="text-xs text-gray-500">{item.category}</div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  <span className="bg-gray-100 rounded px-2 py-1">
+                    Price:{" "}
+                    <span className="font-semibold text-[tomato]">
+                      ${item.price}
+                    </span>
+                  </span>
+                </div>
+                <div className="flex justify-end mt-2">
+                  <button
+                    onClick={() => removeFood(item._id)}
+                    className="text-xs text-red-500 hover:text-red-700 font-bold cursor-pointer"
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-2 text-xs">
-                <span className="bg-gray-100 rounded px-2 py-1">
-                  Price:{" "}
-                  <span className="font-semibold text-[tomato]">
-                    ${item.price}
-                  </span>
-                </span>
-              </div>
-              <div className="flex justify-end mt-2">
-                <button
-                  onClick={() => removeFood(item._id)}
-                  className="text-xs text-red-500 hover:text-red-700 font-bold cursor-pointer"
-                >
-                  Remove
-                </button>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>
