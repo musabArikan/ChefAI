@@ -17,7 +17,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
     toast.info(`${name} removed from cart`, { position: "bottom-right" });
   };
   return (
-    <div className="w-full m-auto rounded-[15px] border border-[tomato]/50 transition-all  hover:shadow-sm  ">
+    <div className="w-full m-auto rounded-[15px] border border-[tomato]/50 transition-all  hover:shadow-sm md:max-h-[450px]  lg:max-h-[360px] min-h-[360px] ">
       <div className="relative">
         <img
           src={url + "/images/" + image}
