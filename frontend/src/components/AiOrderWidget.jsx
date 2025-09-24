@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const AiOrderWidget = ({ open, onClose }) => {
   const { food_list, addToCart, url } = useContext(StoreContext);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("Can you suggest me a Turkish main dish?");
   const [loading, setLoading] = useState(false);
   const [suggestion, setSuggestion] = useState("");
   const [error, setError] = useState("");

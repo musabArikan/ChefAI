@@ -22,7 +22,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
         <img
           src={url + "/images/" + image}
           alt=""
-          className="w-full rounded-t-[15px]"
+          className="w-full rounded-t-[15px] min-h-[180px]  max-h-[180px] object-cover"
         />
         {!cartItems[id] ? (
           <button

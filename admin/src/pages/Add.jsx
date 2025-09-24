@@ -9,7 +9,7 @@ const Add = () => {
     name: "",
     description: "",
     price: "",
-    category: "Salad",
+    category: "",
   });
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -34,7 +34,7 @@ const Add = () => {
         name: "",
         description: "",
         price: "",
-        category: "Salad",
+        category: "",
       });
       setImage(false);
       toast.success(response.data.message);
@@ -100,6 +100,7 @@ const Add = () => {
               <option value="Rolls">Rolls</option>
               <option value="Desserts">Desserts</option>
               <option value="Sandwich">Sandwich</option>
+              <option value="Kebab">Kebab</option>
               <option value="Cake">Cake</option>
               <option value="Pure Veg">Pure Veg</option>
               <option value="Pasta">Pasta</option>
