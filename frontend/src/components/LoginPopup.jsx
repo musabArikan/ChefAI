@@ -40,7 +40,7 @@ const LoginPopup = ({ setShowLogin }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-10 bg-black/50 grid animate-fade-in">
+    <div className="fixed inset-0 z-100 bg-black/50 grid animate-fade-in">
       <form
         onSubmit={onLogin}
         className="place-self-center w-[max(23vw,330px)] text-gray-500 bg-white flex flex-col gap-6 p-6 rounded-lg text-sm"

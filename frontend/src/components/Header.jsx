@@ -10,7 +10,7 @@ const Header = ({ orderWidgetOpen, setOrderWidgetOpen }) => {
         className="w-full h-full object-cover absolute top-0 left-0 z-0"
         draggable="false"
       />
-      <div className="absolute flex flex-col items-start gap-[1vw] max-w-[45%] bottom-[8%] left-[6vw] header-contents max-[1050px]:max-w-[50%] max-[750px]:max-w-[65%] z-10">
+      <div className="absolute flex flex-col items-start gap-[1vw] max-w-[45%] bottom-[8%] left-[6vw] header-contents max-[1050px]:max-w-[50%] max-[750px]:max-w-[65%] z-5">
         <h2 className="text-white font-medium md:text-2xl lg:text-4xl xl:text-5xl text-lg leading-tight animate-fade-in-up animation-delay-300 drop-shadow">
           Order your favourite food here
         </h2>
