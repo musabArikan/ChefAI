@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const GEMINI_API_URL =
-  "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
+  "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent";
 const GEMINI_KEY = process.env.GEMINI_KEY;
 console.log("Gemini Key:", GEMINI_KEY);
 
