@@ -9,16 +9,20 @@ const AiAssistantWidget = () => {
     <>
       {!open && (
         <button
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-br from-[tomato] to-orange-400 rounded-full shadow-lg p-3 hover:scale-110 transition-all cursor-pointer border border-gray-200 animate-pulse-assistant flex flex-col items-center"
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-br from-[tomato] to-orange-400 rounded-xl shadow-lg px-6 py-4 hover:scale-105 transition-all cursor-pointer border border-gray-200 animate-pulse-assistant flex items-center gap-4"
           onClick={() => setOpen(true)}
           aria-label="Open AI Assistant"
         >
           <img
             src={assets.assistant_icon}
             alt="AI Assistant"
-            className="w-16 h-16 bg-white rounded-full mb-1"
+            className="w-14 h-14 bg-white rounded-full"
           />
-          <span className="text-xs font-semibold text-white">CHEFAI</span>
+          <span className="text-sm font-semibold text-white text-left">
+            Not sure what to eat?
+            <br />
+            Let our AI Chef help you!
+          </span>
         </button>
       )}
       {open && (

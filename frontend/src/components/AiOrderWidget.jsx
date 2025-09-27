@@ -13,7 +13,10 @@ const AiOrderWidget = ({ open, onClose }) => {
 
   if (!open) return null;
 
-  const menuNames = food_list.map((f) => f.name);
+  const menuWithDescriptions = food_list.map((f) => ({
+    name: f.name,
+    description: f.description || "No Desc.",
+  }));
 
   const askAi = async (prompt, exclude = "") => {
     setLoading(true);
@@ -22,7 +25,7 @@ const AiOrderWidget = ({ open, onClose }) => {
     try {
       const res = await axios.post(`${url}/api/ai/suggest`, {
         prompt,
-        menu: menuNames,
+        menu: menuWithDescriptions,
         exclude,
       });
       setSuggestion(res.data.suggestion);
@@ -139,11 +142,9 @@ const AiOrderWidget = ({ open, onClose }) => {
             <button
               className="w-full flex cursor-pointer items-center justify-center gap-2 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 rounded-lg px-4 py-2 font-semibold border border-gray-200 hover:from-gray-200 hover:to-gray-300 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-gray-300"
               onClick={() => askAi(input, suggestion)}
-              aria-label="Another Suggestion"
+              aria-label="Next Suggestion"
             >
-              <span>
-                Another Suggestion or <br /> Ask CHEFAI
-              </span>
+              <span>Next Suggestion</span>
             </button>
           </div>
         )}

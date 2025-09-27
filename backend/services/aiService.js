@@ -8,12 +8,23 @@ const GEMINI_KEY = process.env.GEMINI_KEY;
 console.log("Gemini Key:", GEMINI_KEY);
 
 export async function getAiSuggestion(userPrompt, menuList, exclude) {
-  const prompt = `
-You are a smart food assistant. Here is the menu: ${menuList.join(", ")}.
-User wants: ${userPrompt}
-${exclude ? `Previously suggested: ${exclude}. Do not suggest this again.` : ""}
-Suggest the most suitable dish from the menu. Only return the dish name, nothing else.
-`;
+  const menuArr =
+    Array.isArray(menuList) && typeof menuList[0] === "string"
+      ? menuList.map((name) => ({
+          name,
+          description: "No description available.",
+        }))
+      : menuList;
+
+  const menuStr = menuArr
+    .map((item, i) => `${i + 1}. ${item.name}: ${item.description}`)
+    .join("\n");
+
+  const prompt = `You are a smart food assistant. Here is the menu:\n${menuStr}\nUser wants: ${userPrompt}\n${
+    exclude
+      ? `Previously suggested: ${exclude}. Do not suggest this again.`
+      : ""
+  }\nSuggest the most suitable dish from the menu. Only return the dish name, nothing else.`;
 
   try {
     const response = await axios.post(`${GEMINI_API_URL}?key=${GEMINI_KEY}`, {
